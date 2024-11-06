@@ -228,8 +228,9 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const number = Number(value);
+  return Number.isNaN(number) ? def : number;
 }
 
 /**
@@ -243,8 +244,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -260,8 +261,15 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index === 0) return 0;
+  if (index === 1) return 1;
+  let a = 0;
+  let b = 1;
+  for (let i = 2; i <= index; i += 1) {
+    [a, b] = [b, a + b];
+  }
+  return b;
 }
 
 /**
@@ -275,8 +283,8 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  return (n * (n + 1)) / 2;
 }
 
 /**
@@ -290,8 +298,14 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  let sum = 0;
+  let result = Math.abs(num);
+  while (result > 0) {
+    sum += result % 10;
+    result = Math.floor(result / 10);
+  }
+  return sum;
 }
 
 /**
@@ -305,8 +319,9 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  if (num <= 0) return false;
+  return Math.log2(num) % 1 === 0;
 }
 
 /**
